@@ -27,4 +27,8 @@ user = input('Enter username: ')
 # user = 'realdonaldtrump'
 user_info = api.get_user(user, include_entities=1)
 # import pdb; pdb.set_trace()
-print(model.predict(user_info))
+bot = model.predict(user_info)
+if bot:
+    print('@{} is a bot!'.format(user))
+else:
+    print('@{} is not a bot'.format(user))
