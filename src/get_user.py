@@ -24,11 +24,9 @@ with open('../models/rf.pkl', 'rb') as infile:
     model = pickle.load(infile)
 
 user = input('Enter username: ')
-# user = 'realdonaldtrump'
 user_info = api.get_user(user, include_entities=1)
-# import pdb; pdb.set_trace()
-bot = model.predict(user_info)
+bot, proba = model.predict(user_info)
 if bot:
-    print('@{} is a bot!'.format(user))
+    print('{}% chance that @{} is a bot!'.format(proba[0][1]*100, user))
 else:
-    print('@{} is not a bot'.format(user))
+    print('{}% chance that @{} is not a bot'.format(proba[0][0]*100, user))

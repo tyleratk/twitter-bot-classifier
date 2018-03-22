@@ -51,7 +51,10 @@ class BotClassifier():
 
     def predict(self, user):
         X = self.get_x_y(user, predict=True)
-        return self.model.predict([X])[0]
+        bot = self.model.predict([X])[0]
+        proba = self.model.predict_proba([X])
+
+        return bot, proba
 
 
 if __name__ == '__main__':
